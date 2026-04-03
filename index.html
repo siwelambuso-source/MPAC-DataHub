@@ -172,15 +172,6 @@
       gap: 8px;
     }
 
-    .demo-hint {
-      font-size: 0.7rem;
-      color: #cdd9ff;
-      margin-top: 1.8rem;
-      background: rgba(0, 0, 0, 0.4);
-      padding: 8px;
-      border-radius: 50px;
-    }
-
     /* Dashboard Wrapper */
     .dashboard-wrapper {
       display: none;
@@ -310,12 +301,7 @@
     .gender-box { background: rgba(0, 0, 0, 0.4); padding: 20px; border-radius: 16px; text-align: center; border: 1px solid rgba(255, 215, 0, 0.2); }
     .gender-box input { width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 215, 0, 0.2); border-radius: 12px; color: white; font-size: 1.2rem; text-align: center; }
     .btn-gold { background: linear-gradient(135deg, #b22234, #8b0000); color: white; border: none; padding: 16px; border-radius: 50px; font-weight: 800; cursor: pointer; width: 100%; margin: 20px 0 25px 0; transition: all 0.3s; }
-    .btn-gold:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-      background: linear-gradient(135deg, #6e1a1f, #5a0000);
-    }
+    .btn-gold:disabled { opacity: 0.6; cursor: not-allowed; transform: none; background: linear-gradient(135deg, #6e1a1f, #5a0000); }
     .btn-secondary { background: rgba(255, 215, 0, 0.2); border: 1px solid var(--patriot-gold); color: white; padding: 8px 20px; border-radius: 50px; cursor: pointer; }
     .data-table-wrapper { overflow-x: auto; padding: 20px; }
     table { width: 100%; border-collapse: collapse; }
@@ -339,7 +325,7 @@
 </head>
 <body>
 
-<!-- LOGIN OVERLAY -->
+<!-- LOGIN OVERLAY - Beautiful, with username/password fields (demo hint removed) -->
 <div id="loginOverlay" class="login-overlay">
   <div class="login-container">
     <div class="login-logo">
@@ -350,17 +336,15 @@
     <form id="loginForm">
       <div class="input-group">
         <label><i class="fas fa-user-lock"></i> Username</label>
-        <input type="text" id="loginUsername" class="login-input" placeholder="MPAC" autocomplete="off" value="">
+        <input type="text" id="loginUsername" class="login-input" placeholder="Enter username" autocomplete="off" value="">
       </div>
       <div class="input-group">
         <label><i class="fas fa-key"></i> Password</label>
-        <input type="password" id="loginPassword" class="login-input" placeholder="••••••">
+        <input type="password" id="loginPassword" class="login-input" placeholder="Enter password">
       </div>
-      <button type="submit" class="login-btn"><i class="fas fa-sign-in-alt"></i> Unlock Dashboard</button>
+      <button type="submit" class="login-btn"><i class="fas fa-sign-in-alt"></i> Access Dashboard</button>
       <div id="loginError" class="error-message"><i class="fas fa-exclamation-triangle"></i> Invalid credentials</div>
-      <div class="demo-hint">
-        <i class="fas fa-lock"></i> Demo: <strong style="color:#ffd700;">MPAC</strong> / <strong style="color:#ffd700;">MPAC#2026</strong>
-      </div>
+      <!-- DEMO HINT LINE COMPLETELY REMOVED -->
     </form>
   </div>
 </div>
@@ -484,7 +468,6 @@
     document.getElementById('meetingDate').value = today;
     document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
     
-    // Attendance form with proper button disabling
     document.getElementById('attendanceForm').addEventListener('submit', async(e) => { 
       e.preventDefault(); 
       if (isSavingAttendance) { showToast('Please wait, saving in progress...', true); return; }
@@ -508,7 +491,6 @@
       finally { isSavingAttendance = false; setAttendanceButtonLoading(false); }
     });
     
-    // Meeting form with proper button disabling
     document.getElementById('meetingForm').addEventListener('submit', async(e) => { 
       e.preventDefault(); 
       if (isSavingMeeting) { showToast('Please wait, saving in progress...', true); return; }
